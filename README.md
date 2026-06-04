@@ -3,6 +3,10 @@
 
 This repository contains the code, notebooks, and analysis artifacts for my Princeton University senior independent work project, **Semantic Overlap in Music Tags: A CLAP Embedding Analysis of MTG-Jamendo**.
 
+<p align="center">
+  <img src="figures/umap_gmm_plot.png" alt="UMAP GMM PLOT" width="600">
+</p>
+
 Music tags such as genre, instrument, and mood are central to music search, recommendation, playlist generation, and music information retrieval systems. However, many tags are acoustically ambiguous: a single label like `mood/theme-melodic` or `genre-psychedelic` can describe tracks that sound very different from one another. This project investigates whether music tags correspond to coherent regions in an audio embedding space, or whether they systematically spread across multiple acoustic modes — a phenomenon I refer to as **tag polysemy**.
 
 Using the MTG-Jamendo dataset, I extracted 512-dimensional CLAP audio embeddings for approximately 55.6k tracks, reduced them with PCA to 44 dimensions while retaining 85.39% cumulative explained variance, and modeled the resulting embedding distribution with Gaussian Mixture Models. A full-covariance GMM with 15 components was selected for downstream interpretability, and UMAP was used to visualize the learned structure. I then quantified how dispersed each tag was across GMM components using entropy, normalized entropy, top-1 mass, and top-3 mass.
@@ -24,6 +28,10 @@ The pipeline consists of:
 7. Measuring tag dispersion across learned components
 8. Ranking tags from localized/monosemous to dispersed/polysemous
 
+
+<img src="figures/pipeline_overview.png" alt="Pipeline Overview" width="600">
+
+
 The full project pipeline is described in the written report and implemented across several notebooks, including data processing, exploratory analysis, CLAP embedding extraction, K-means clustering, and GMM-based tag polysemy analysis.
 
 ## Main Findings
@@ -38,6 +46,8 @@ Some tags are relatively localized, meaning they concentrate strongly in one or 
 - `genre-singersongwriter`
 - `genre-grunge`
 
+<img src="figures/umap_rock.png" alt="UMAP ROCK" width="600">
+
 Other tags are highly dispersed, spanning many or all components. Examples include:
 
 - `mood/theme-melodic`
@@ -45,6 +55,8 @@ Other tags are highly dispersed, spanning many or all components. Examples inclu
 - `mood/theme-sad`
 - `genre-psychedelic`
 - `mood/theme-melancholic`
+
+<img src="figures/umap_electronic.png" alt="UMAP ELECTRONIC" width="600">
 
 For example, `mood/theme-melodic` appeared across all 15 components with high normalized entropy and low top-1 mass, while `genre-hardrock` was much more concentrated in a dominant component.
 
@@ -54,6 +66,10 @@ For example, `mood/theme-melodic` appeared across all 15 components with high no
 
 This project uses **MTG-Jamendo**, an open music dataset built from Creative Commons tracks on Jamendo. The dataset contains a fixed vocabulary of 195 tags spanning genre, instrument, and mood/theme categories. After filtering and joining metadata with embeddings, the final analysis used **55,609 tracks**.
 
+<p align="center">
+  <img src="figures/top_tag_dist.png" alt="MTG TAGS" width="800">
+</p>
+
 ### Embeddings
 
 Each track was represented using a 512-dimensional audio embedding from **CLAP**. Although CLAP is a multimodal audio-text model, this project uses only the audio encoder in order to test whether tag structure is visible in audio-derived representations alone.
@@ -62,9 +78,13 @@ Each track was represented using a 512-dimensional audio embedding from **CLAP**
 
 Embeddings were L2-normalized and reduced with PCA to 44 dimensions, retaining 85.39% cumulative explained variance. This made downstream clustering and covariance modeling more stable and computationally tractable.
 
+<img src="figures/cev.png" alt="CEV" width="500">
+
 ### Clustering and Density Modeling
 
 K-means was used as a baseline, but silhouette scores were low and cluster separation was weak. Gaussian Mixture Models provided a more flexible approach because they can represent ellipsoidal, overlapping components and assign soft membership probabilities. A sweep over component counts and covariance types showed that full-covariance GMMs fit the embedding distribution best.
+
+<img src="figures/delta_bic_vs_k.png" alt="covariancetype" width="600">
 
 ### Tag Polysemy Metrics
 
