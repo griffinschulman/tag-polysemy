@@ -77,6 +77,10 @@ For each tag, I measured how its tracks were distributed across GMM components u
 
 Tags with high entropy and low top-1 mass are interpreted as more polysemous; tags with low entropy and high top-1 mass are interpreted as more localized.
 
+### Limitations 
+
+The dispersion statistics were computed using hard component assignments, which discards uncertainty in the GMM responsibilities and can overstate separation for borderline tracks. The notion of “acoustic regions” is also model-dependent: the results may vary with the embedding model (CLAP checkpoint), the PCA dimensionality, and the selected K. Additionally, UMAP is used only for visualization and can distort global geometry, so visual “islands” should not be over-interpreted as true distances. Lastly, MTG-Jamendo reflects a particular distribution of open-license music and a fixed tag vocabulary, so tag meaning, generality, and co-occurrence patterns may differ in commercial music data or other cultural contexts.
+
 ## Repository Structure
 
 ```text
