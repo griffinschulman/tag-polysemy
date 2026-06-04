@@ -1,7 +1,7 @@
 # Semantic Overlap in Music Tags  
 ### A CLAP Embedding Analysis of MTG-Jamendo
 
-This repository contains the code, notebooks, and analysis artifacts for my independent work project, **Semantic Overlap in Music Tags: A CLAP Embedding Analysis of MTG-Jamendo**.
+This repository contains the code, notebooks, and analysis artifacts for my Princeton University senior independent work project, **Semantic Overlap in Music Tags: A CLAP Embedding Analysis of MTG-Jamendo**.
 
 Music tags such as genre, instrument, and mood are central to music search, recommendation, playlist generation, and music information retrieval systems. However, many tags are acoustically ambiguous: a single label like `mood/theme-melodic` or `genre-psychedelic` can describe tracks that sound very different from one another. This project investigates whether music tags correspond to coherent regions in an audio embedding space, or whether they systematically spread across multiple acoustic modes — a phenomenon I refer to as **tag polysemy**.
 
