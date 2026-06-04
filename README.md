@@ -78,13 +78,17 @@ Each track was represented using a 512-dimensional audio embedding from **CLAP**
 
 Embeddings were L2-normalized and reduced with PCA to 44 dimensions, retaining 85.39% cumulative explained variance. This made downstream clustering and covariance modeling more stable and computationally tractable.
 
+<p align="center">
 <img src="figures/cev.png" alt="CEV" width="500">
+</p>
 
 ### Clustering and Density Modeling
 
 K-means was used as a baseline, but silhouette scores were low and cluster separation was weak. Gaussian Mixture Models provided a more flexible approach because they can represent ellipsoidal, overlapping components and assign soft membership probabilities. A sweep over component counts and covariance types showed that full-covariance GMMs fit the embedding distribution best.
 
+<p align="center">
 <img src="figures/delta_bic_vs_k.png" alt="covariancetype" width="600">
+</p>
 
 ### Tag Polysemy Metrics
 
