@@ -32,7 +32,9 @@ The pipeline consists of:
 <img src="figures/pipeline_overview.png" alt="Pipeline Overview" width="600">
 
 
-The full project pipeline is described in the written report and implemented across several notebooks, including data processing, exploratory analysis, CLAP embedding extraction, K-means clustering, and GMM-based tag polysemy analysis.
+The full project pipeline is described in the written report and implemented across several notebooks, including data processing, exploratory analysis, CLAP embedding extraction, K-means clustering, and GMM-based tag polysemy analysis. 
+
+**Note: This repository does not contain the downloaded checkpoint for the GMM model, nor the full dataset of audio from MTG-Jamendo due to size limits on GitHub. However, they can be downloaded by following the steps in the correct order of Colab notebooks.
 
 ## Main Findings
 
